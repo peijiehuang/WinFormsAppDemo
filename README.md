@@ -1,122 +1,130 @@
-# WinFormsAppDemo
+# WinFormsAppDemo - 现代化 .NET 8 WinForms 开发模板
 
-这是一个基于 **.NET 8.0** 构建的现代 Windows Forms 桌面应用程序示例。项目采用了分层架构设计，集成了 **SunnyUI** 作为 UI 框架，使用 **SqlSugar** 作为 ORM 工具，并包含用户管理、登录认证等基础功能模块。
+这是一个基于 **.NET 8.0** 和 **SunnyUI** 的 Windows Forms 桌面应用程序开发模板。它预置了企业级应用所需的关键基础设施，旨在帮助开发者快速启动项目。
 
-## 🛠️ 技术栈 (Tech Stack)
+## ✨ 核心特性
 
-- **开发环境**: Visual Studio 2022+
-- **框架**: .NET 8.0 (Windows)
-- **UI 库**: [SunnyUI](https://gitee.com/yhuse/SunnyUI) (提供现代化的扁平化控件和主题支持)
-- **ORM**: [SqlSugar](https://www.donet5.com/Home/Doc) (轻量级、高性能的 .NET ORM)
-- **数据库**: SQLite (默认) / 支持 SQL Server, MySQL 等 (通过配置切换)
-- **依赖注入/配置**: Microsoft.Extensions.Hosting / Configuration
-- **日志**: Serilog
-- **工具类**: Newtonsoft.Json
+*   **现代化 UI**: 深度集成 [SunnyUI](https://gitee.com/yhuse/SunnyUI)，提供扁平化、美观的控件库和主题系统。
+*   **分层架构**: 清晰分离 `Forms` (UI), `Services` (业务逻辑), `Models` (数据模型)。
+*   **依赖注入 (DI)**: 使用 `Microsoft.Extensions.DependencyInjection` 管理服务生命周期。
+*   **ORM 集成**: 内置 [SqlSugar](https://www.donet5.com/Home/Doc) (支持 SQLite/MySQL/SQLServer)，实现高效数据访问。
+*   **多语言支持**: 基于 JSON 文件的轻量级国际化 (I18n) 方案，支持运行时热切换。
+*   **配置管理**: 支持 `appsettings.json` 配置。
 
-## 📂 项目结构分析
-
-项目采用清晰的分层结构，便于维护和扩展：
+## 📂 目录结构
 
 ```text
 WinFormsAppDemo/
-├── bin/                    # 编译输出目录 (包含 DLLs 和配置文件)
-├── Common/                 # 公共工具层
-│   └── LocalizationManager.cs # 本地化/多语言管理
-├── Config/                 # 配置文件目录
-├── Forms/                  # UI 层 - 窗体
-│   ├── Pages/              # UI 层 - 页面 (UserControls, 用于在主窗体容器中切换)
-│   │   ├── DashboardPage.cs      # 仪表盘页面
-│   │   └── UserManagementPage.cs # 用户管理页面
-│   ├── LoginForm.cs        # 登录窗体
-│   ├── MainForm.cs         # 主窗体 (通常包含侧边栏导航和主内容区)
-│   └── UserEditForm.cs     # 用户编辑/新增弹窗
-├── Models/                 # 实体层 (数据模型)
-│   └── User.cs             # 用户实体定义
-├── Services/               # 业务逻辑与数据访问层
-│   ├── DatabaseService.cs  # 数据库初始化与连接管理
-│   └── UserService.cs      # 用户相关的业务逻辑 (增删改查)
-├── Resources/              # 静态资源
-│   └── lang-zh-CN.json     # 语言包文件
-├── Program.cs              # 程序入口点 (配置 DI 容器, 全局异常处理等)
-└── appsettings.json        # 应用程序配置文件 (连接字符串, 系统设置)
+├── 📂 Common/               # 基础设施 (如 LocalizationManager)
+├── 📂 Forms/                # UI 界面
+│   ├── 📂 Pages/            # 子页面 (用户控件，嵌入主窗口)
+│   ├── LoginForm.cs        # 登录窗口
+│   ├── MainForm.cs         # 主窗口框架
+│   └── UserEditForm.cs     # 模态对话框示例
+├── 📂 Models/               # 数据库实体类
+├── 📂 Resources/            # 静态资源 & 语言包 (JSON)
+├── 📂 Services/             # 业务逻辑层
+├── Program.cs              # 程序入口 (DI 容器配置)
+└── appsettings.json        # 配置文件
 ```
 
-## 🚀 快速开始 (Getting Started)
+## 🚀 快速上手
 
-1.  **环境准备**: 确保安装了 .NET 8 SDK 和 Visual Studio。
-2.  **还原包**: 打开 `WinFormsAppDemo.sln`，VS 会自动还原 NuGet 包。
-3.  **配置数据库**: 检查 `appsettings.json` 中的连接字符串。默认情况下，项目会在 `bin` 目录下生成 `app.db` (SQLite)。
-4.  **运行**: 按 `F5` 启动项目。
+1.  **环境要求**: Visual Studio 2022, .NET 8 SDK。
+2.  **构建**: 打开解决方案，还原 NuGet 包并编译。
+3.  **运行**: 启动项目，默认会自动生成 SQLite 数据库文件 `bin/.../app.db`。默认账号: `admin`, 密码: `123456`。
 
-## 📝 开发指南：如何新增页面
+---
 
-本项目采用了 SunnyUI 的页面导航模式。要在 `MainForm` 中添加一个新的功能页面，请按照以下步骤操作：
+## 📖 详细开发指南
 
-### 步骤 1: 创建新页面 (View)
-1.  在 `Forms/Pages` 文件夹上右键 -> **添加** -> **用户控件 (Windows Forms)**。
-2.  命名为 `ProductPage.cs` (示例)。
-3.  **关键步骤**: 打开代码文件，将继承基类从 `UserControl` 修改为 `UIPage` (需要引用 `Sunny.UI` 命名空间)。
-    ```csharp
-    using Sunny.UI;
+### 1. 如何添加新页面 (Page)
 
-    namespace WinFormsAppDemo.Forms.Pages
-    {
-        // 继承自 UIPage 以获得 SunnyUI 的页面特性
-        public partial class ProductPage : UIPage
-        {
-            public ProductPage()
-            {
-                InitializeComponent();
-            }
-        }
-    }
-    ```
-4.  在设计器中拖拽控件，完成界面设计。
+本模板使用 `UIPage` + `UITabControl` 的方式进行导航。假设你要添加一个 **"产品管理" (ProductPage)** 页面：
 
-### 步骤 2: 创建业务逻辑 (可选)
-如果页面需要处理数据：
-1.  在 `Models` 中创建实体类 (例如 `Product.cs`)。
-2.  在 `Services` 中创建服务类 (例如 `ProductService.cs`)，编写数据库操作代码。
-
-### 步骤 3: 注册并显示页面
-打开 `Forms/MainForm.cs` 的代码 (通常在构造函数或 `Init` 方法中)，找到侧边栏导航菜单的配置代码。
-
-假设主窗体使用的是 `UINavMenu` 或 `UIAside`，添加如下代码：
+#### 第一步：创建页面文件
+1.  在 `Forms/Pages` 目录下新建 **用户控件 (UserControl)**，命名为 `ProductPage.cs`。
+2.  修改代码继承自 `UIPage` (需引用 `Sunny.UI`)，并支持依赖注入：
 
 ```csharp
-// 1. 定义页面索引 (如果在设计器中使用了索引)
-int pageIndex = 1003; 
+using Sunny.UI;
+using WinFormsAppDemo.Common;
 
-// 2. 创建页面实例 (或者通过依赖注入获取)
-var productPage = new WinFormsAppDemo.Forms.Pages.ProductPage();
-
-// 3. 将节点添加到侧边栏菜单
-// 参数: 节点文字, 页面实例/索引, 图标
-TreeNode node = Aside.CreateNode("产品管理", 61451, 24, pageIndex); 
-
-// 4. 如果使用 TabControl 或页面管理器，可能需要手动添加
-// MainTabControl.AddPage(productPage); 
-```
-
-*注意：具体的注册代码取决于 `MainForm` 中使用的是 SunnyUI 的自动页面管理还是手动 TabControl 管理。请参考 `MainForm.cs` 中现有的 `DashboardPage` 是如何注册的。*
-
-## ⚙️ 配置说明
-
-项目的核心配置位于 `appsettings.json`:
-
-```json
+namespace WinFormsAppDemo.Forms.Pages
 {
-  "ConnectionStrings": {
-    "DefaultConnection": "DataSource=app.db"
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information"
+    // 继承自 UIPage
+    public partial class ProductPage : UIPage
+    {
+        private readonly LocalizationManager _localization;
+
+        // 支持构造函数注入服务
+        public ProductPage(LocalizationManager localization)
+        {
+            InitializeComponent();
+            _localization = localization;
+            
+            // 建议：在此处订阅语言变更事件
+        }
     }
-  }
 }
 ```
 
-## 🤝 贡献与规范
-- 修改 UI 时请保持 SunnyUI 的风格一致性。
-- 业务逻辑请尽量写在 `Services` 层，保持 UI 层轻量化。
+#### 第二步：注册到依赖注入容器
+打开 `Program.cs`，在 `ConfigureServices` 方法中注册新页面：
+
+```csharp
+services.AddTransient<ProductPage>();
+```
+
+#### 第三步：配置导航菜单
+打开 `Forms/MainForm.cs`，找到 `InitNavigation` 方法，添加菜单节点并关联页面：
+
+```csharp
+// 1. 在 MainForm 构造函数参数中添加新页面的依赖
+// public MainForm(..., ProductPage productPage) { ... }
+
+// 2. 添加到页面容器
+pageContainer.AddPage(productPage);
+
+// 3. 创建左侧菜单节点
+// 参数: 菜单显示文本, 图标(FontAwesome ID), 图标大小, 页面索引(PageIndex)
+// 注意: PageIndex 必须全局唯一，建议从 100x 开始递增
+var node = NavMenu.CreateNode("产品管理", 61451, 24, 1003); 
+```
+
+### 2. 如何添加多语言支持
+
+1.  打开 `Resources/lang-zh-CN.json` 和 `lang-en-US.json`。
+2.  添加对应的键值对：
+    ```json
+    // zh-CN
+    "ProductManagement": "产品管理"
+    
+    // en-US
+    "ProductManagement": "Products"
+    ```
+3.  在代码中使用：
+    ```csharp
+    _localization.GetString("ProductManagement")
+    ```
+
+### 3. 如何操作数据库
+
+1.  在 `Models` 文件夹定义实体类 (使用 SqlSugar 特性)：
+    ```csharp
+    [SugarTable("Products")]
+    public class Product
+    {
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+    ```
+2.  在 `Services` 文件夹创建 `ProductService`。
+3.  在 `Program.cs` 中注册 Service。
+4.  在 UI 中注入并使用 Service。
+
+## 💡 常见问题
+
+*   **Q: 编译报错 "UIStyle 无法转换为 bool"**
+    *   A: 请检查 `UIMessageBox.Show` 的参数。`ShowAsk` 等方法不需要传递 `UIStyle`，且不再支持部分旧版重载。请参考 `UserManagementPage.cs` 中的最新写法。
