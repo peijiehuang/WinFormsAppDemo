@@ -5,14 +5,7 @@ namespace WinFormsAppDemo.Forms.Pages
     {
         private System.ComponentModel.IContainer components = null;
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
 
         private void InitializeComponent()
         {
@@ -90,10 +83,14 @@ namespace WinFormsAppDemo.Forms.Pages
             // DashboardPage
             // 
             AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(244, 242, 251);
             ClientSize = new Size(800, 450);
+            ControlBoxFillHoverColor = Color.FromArgb(133, 97, 198);
             Controls.Add(pnlContainer);
             Name = "DashboardPage";
             PageIndex = 1001;
+            RectColor = Color.FromArgb(102, 58, 183);
+            Style = Sunny.UI.UIStyle.Custom;
             Text = "DashboardPage";
             pnlContainer.ResumeLayout(false);
             ResumeLayout(false);

@@ -242,7 +242,7 @@ namespace WinFormsAppDemo.Forms
             StartPosition = FormStartPosition.CenterParent;
             Style = Sunny.UI.UIStyle.Custom;
             Text = "用户编辑";
-            TitleColor = Color.FromArgb(103, 58, 183);
+            TitleColor = Color.FromArgb(102, 58, 183);
             ZoomScaleRect = new Rectangle(15, 15, 800, 450);
             ResumeLayout(false);
 

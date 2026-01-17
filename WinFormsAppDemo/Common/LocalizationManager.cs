@@ -7,6 +7,8 @@ namespace WinFormsAppDemo.Common
         private Dictionary<string, string> _translations = new();
         public string CurrentLanguage { get; private set; } = "zh-CN";
 
+        public event Action? LanguageChanged;
+
         public void LoadLanguage(string langCode)
         {
             CurrentLanguage = langCode;
@@ -16,6 +18,7 @@ namespace WinFormsAppDemo.Common
                 var json = File.ReadAllText(path);
                 _translations = JsonSerializer.Deserialize<Dictionary<string, string>>(json) ?? new();
             }
+            LanguageChanged?.Invoke();
         }
 
         public string GetString(string key)

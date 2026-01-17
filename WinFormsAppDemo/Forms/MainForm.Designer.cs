@@ -31,7 +31,6 @@ namespace WinFormsAppDemo.Forms
             Aside.Controls.Add(lblLogo);
             Aside.Controls.Add(uiSymbolLabel1);
             Aside.Dock = DockStyle.Left;
-
             Aside.Font = new Font("微软雅黑", 12F);
             Aside.Location = new Point(0, 60);
             Aside.Margin = new Padding(4, 5, 4, 5);
@@ -44,22 +43,34 @@ namespace WinFormsAppDemo.Forms
             // 
             // NavMenu
             // 
-
+            NavMenu.BackColor = Color.FromArgb(240, 240, 240);
             NavMenu.BorderStyle = BorderStyle.None;
             NavMenu.Dock = DockStyle.Fill;
             NavMenu.DrawMode = TreeViewDrawMode.OwnerDrawAll;
+            NavMenu.FillColor = Color.FromArgb(240, 240, 240);
             NavMenu.Font = new Font("微软雅黑", 12F);
+            NavMenu.ForeColor = Color.FromArgb(48, 48, 48);
             NavMenu.FullRowSelect = true;
             NavMenu.HotTracking = true;
+            NavMenu.HoverColor = Color.FromArgb(230, 230, 230);
             NavMenu.ItemHeight = 50;
             NavMenu.Location = new Point(0, 110);
             NavMenu.MenuStyle = Sunny.UI.UIMenuStyle.White;
             NavMenu.Name = "NavMenu";
+            NavMenu.ScrollBarColor = Color.FromArgb(48, 48, 48);
+            NavMenu.ScrollBarHoverColor = Color.FromArgb(48, 48, 48);
+            NavMenu.ScrollBarPressColor = Color.FromArgb(48, 48, 48);
+            NavMenu.ScrollFillColor = Color.FromArgb(240, 240, 240);
+            NavMenu.SecondBackColor = Color.FromArgb(235, 235, 235);
+            NavMenu.SelectedColor = Color.FromArgb(250, 250, 250);
+            NavMenu.SelectedColor2 = Color.FromArgb(250, 250, 250);
+            NavMenu.SelectedForeColor = Color.FromArgb(102, 58, 183);
+            NavMenu.SelectedHighColor = Color.FromArgb(102, 58, 183);
             NavMenu.ShowLines = false;
             NavMenu.ShowPlusMinus = false;
             NavMenu.ShowRootLines = false;
             NavMenu.Size = new Size(250, 775);
-            NavMenu.Style = Sunny.UI.UIStyle.Purple;
+            NavMenu.Style = Sunny.UI.UIStyle.Custom;
             NavMenu.TabIndex = 3;
             NavMenu.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
@@ -67,13 +78,23 @@ namespace WinFormsAppDemo.Forms
             // 
             btnLogout.Cursor = Cursors.Hand;
             btnLogout.Dock = DockStyle.Bottom;
+            btnLogout.FillColor = Color.FromArgb(102, 58, 183);
+            btnLogout.FillColor2 = Color.FromArgb(102, 58, 183);
+            btnLogout.FillHoverColor = Color.FromArgb(133, 97, 198);
+            btnLogout.FillPressColor = Color.FromArgb(82, 46, 147);
+            btnLogout.FillSelectedColor = Color.FromArgb(82, 46, 147);
             btnLogout.Font = new Font("微软雅黑", 12F);
+            btnLogout.LightColor = Color.FromArgb(244, 242, 251);
             btnLogout.Location = new Point(0, 885);
             btnLogout.MinimumSize = new Size(1, 1);
             btnLogout.Name = "btnLogout";
             btnLogout.Padding = new Padding(20, 0, 0, 0);
+            btnLogout.RectColor = Color.FromArgb(102, 58, 183);
+            btnLogout.RectHoverColor = Color.FromArgb(133, 97, 198);
+            btnLogout.RectPressColor = Color.FromArgb(82, 46, 147);
+            btnLogout.RectSelectedColor = Color.FromArgb(82, 46, 147);
             btnLogout.Size = new Size(250, 55);
-            btnLogout.Style = Sunny.UI.UIStyle.Purple;
+            btnLogout.Style = Sunny.UI.UIStyle.Custom;
             btnLogout.Symbol = 61579;
             btnLogout.TabIndex = 2;
             btnLogout.Text = "注销";
@@ -126,12 +147,17 @@ namespace WinFormsAppDemo.Forms
             // MainForm
             // 
             AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(244, 242, 251);
             ClientSize = new Size(1600, 1000);
+            ControlBoxFillHoverColor = Color.FromArgb(133, 97, 198);
             Controls.Add(pageContainer);
             Controls.Add(Aside);
             Name = "MainForm";
             Padding = new Padding(0, 60, 0, 0);
+            RectColor = Color.FromArgb(102, 58, 183);
+            Style = Sunny.UI.UIStyle.Custom;
             Text = "MainForm";
+            TitleColor = Color.FromArgb(102, 58, 183);
             TitleFont = new Font("微软雅黑", 16F);
             TitleHeight = 60;
             ZoomScaleRect = new Rectangle(22, 22, 1600, 1000);

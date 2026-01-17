@@ -230,14 +230,19 @@ namespace WinFormsAppDemo.Forms
             // LoginForm
             // 
             AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(244, 242, 251);
             ClientSize = new Size(1500, 900);
+            ControlBoxFillHoverColor = Color.FromArgb(133, 97, 198);
             Controls.Add(pnlRight);
             Controls.Add(pnlLeft);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoginForm";
             Padding = new Padding(0, 60, 0, 0);
+            RectColor = Color.FromArgb(102, 58, 183);
+            Style = Sunny.UI.UIStyle.Custom;
             Text = "Login";
+            TitleColor = Color.FromArgb(102, 58, 183);
             TitleFont = new Font("微软雅黑", 16F);
             TitleHeight = 60;
             ZoomScaleRect = new Rectangle(15, 15, 1500, 900);

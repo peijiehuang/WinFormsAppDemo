@@ -67,13 +67,13 @@ namespace WinFormsAppDemo.Forms
 
                     if (_userService.UpdateUser(_currentUser))
                     {
-                        UIMessageBox.Show("用户更新成功!", "提示", UIStyle.Purple);
+                        UIMessageBox.Show("用户更新成功!", "提示", UIStyle.Purple, UIMessageBoxButtons.OK);
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     }
                     else
                     {
-                        UIMessageBox.Show("用户更新失败!", "提示", UIStyle.Purple);
+                        UIMessageBox.Show("用户更新失败!", "提示", UIStyle.Purple, UIMessageBoxButtons.OK);
                     }
                 }
                 else
@@ -91,19 +91,19 @@ namespace WinFormsAppDemo.Forms
 
                     if (_userService.AddUser(newUser))
                     {
-                        UIMessageBox.ShowSuccess("用户添加成功!");
+                        UIMessageBox.Show("用户添加成功!", "提示", UIStyle.Purple, UIMessageBoxButtons.OK);
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     }
                     else
                     {
-                        UIMessageBox.ShowError("用户添加失败!");
+                        UIMessageBox.Show("用户添加失败!", "提示", UIStyle.Purple, UIMessageBoxButtons.OK);
                     }
                 }
             }
             catch (Exception ex)
             {
-                UIMessageBox.ShowError($"操作失败: {ex.Message}");
+                UIMessageBox.Show($"操作失败: {ex.Message}", "错误", UIStyle.Purple, UIMessageBoxButtons.OK);
             }
         }
 
@@ -112,7 +112,7 @@ namespace WinFormsAppDemo.Forms
             // 验证用户名
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                UIMessageBox.ShowWarning("请输入用户名!");
+                UIMessageBox.Show("请输入用户名!", "警告", UIStyle.Purple, UIMessageBoxButtons.OK);
                 txtUsername.Focus();
                 return false;
             }
@@ -120,7 +120,7 @@ namespace WinFormsAppDemo.Forms
             // 验证用户名唯一性(仅在添加模式下)
             if (!IsEditMode && _userService.IsUsernameExists(txtUsername.Text.Trim()))
             {
-                UIMessageBox.ShowWarning("用户名已存在!");
+                UIMessageBox.Show("用户名已存在!", "警告", UIStyle.Purple, UIMessageBoxButtons.OK);
                 txtUsername.Focus();
                 return false;
             }
@@ -128,14 +128,14 @@ namespace WinFormsAppDemo.Forms
             // 验证密码
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                UIMessageBox.ShowWarning("请输入密码!");
+                UIMessageBox.Show("请输入密码!", "警告", UIStyle.Purple, UIMessageBoxButtons.OK);
                 txtPassword.Focus();
                 return false;
             }
 
             if (txtPassword.Text.Length < 6)
             {
-                UIMessageBox.ShowWarning("密码长度不能少于6位!");
+                UIMessageBox.Show("密码长度不能少于6位!", "警告", UIStyle.Purple, UIMessageBoxButtons.OK);
                 txtPassword.Focus();
                 return false;
             }
@@ -145,7 +145,7 @@ namespace WinFormsAppDemo.Forms
             {
                 if (!IsValidEmail(txtEmail.Text.Trim()))
                 {
-                    UIMessageBox.ShowWarning("邮箱格式不正确!");
+                    UIMessageBox.Show("邮箱格式不正确!", "警告", UIStyle.Purple, UIMessageBoxButtons.OK);
                     txtEmail.Focus();
                     return false;
                 }
